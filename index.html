@@ -157,8 +157,12 @@
             document.querySelector(".subtitle").style.opacity = 1;
             
             setTimeout(function() {
-                fbq('track', 'Lead');
-                window.location.href = document.getElementById("redirectButton").href;
+                fbq('track', 'Lead');  
+
+                setTimeout(function() {  
+                    window.location.href = document.getElementById("redirectButton").href;
+                }, 300); // Espera 300ms antes de redirigir para que el evento se registre correctamente
+
             }, 5000);
         });
     </script>
