@@ -47,25 +47,29 @@
             animation: fadeIn 1s ease-in-out;
         }
 
+        .subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
         .highlight {
             font-size: 18px;
             font-weight: bold;
             color: #ffcc00;
             text-shadow: 0 0 10px #ffcc00;
             margin-bottom: 10px;
-            animation: glow 1.5s infinite alternate;
-        }
-
-        .subtitle {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 20px;
-            animation: slideIn 1s ease-in-out;
         }
 
         .redirect-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             padding: 15px 30px;
             background: linear-gradient(90deg, #ff7e5f, #feb47b);
             color: #fff;
@@ -77,6 +81,12 @@
             animation: pulse 1.5s infinite;
         }
 
+        .redirect-button img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+        }
+
         .progress-bar {
             width: 100%;
             height: 5px;
@@ -84,14 +94,13 @@
             margin-top: 20px;
             border-radius: 5px;
             overflow: hidden;
-            position: relative;
         }
 
         .progress {
             height: 100%;
             width: 0;
             background: #ffcc00;
-            animation: loadProgress 10s linear forwards;
+            animation: loadProgress 5s linear forwards;
         }
 
         .footer {
@@ -116,11 +125,6 @@
             100% { transform: scale(1); }
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ffcc00; }
-            to { text-shadow: 0 0 20px #ffcc00; }
-        }
-
         @keyframes loadProgress {
             from { width: 0; }
             to { width: 100%; }
@@ -131,7 +135,10 @@
     <div class="container">
         <div class="highlight">CHATEA CON NUESTRO PERSONAL</div>
         <div class="subtitle"></div>
-        <a href="#" class="redirect-button" id="redirectButton">CHATEA POR WHATSAPP</a>
+        <a href="https://wa.me/5491171836655?text=HOLA,%20ME%20GUSTARÍA%20EMPEZAR%20A%20JUGAR,%20¿CÓMO%20EMPIEZO?" class="redirect-button" id="redirectButton">
+            CHATEA POR WHATSAPP
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp">
+        </a>
         <div class="progress-bar"><div class="progress"></div></div>
         <div class="footer">+250.000 USUARIOS | 4 AÑOS DE EXPERIENCIA | ATENCIÓN PERSONALIZADA LAS 24HS DEL DÍA</div>
     </div>
@@ -139,19 +146,20 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const subtitles = [
-                "🔥 ¡DESBLOQUEÁ TU BONUS DE BIENVENIDA Y DISFRUTÁ DE GRANDES BENEFICIOS! 🎉",
-                "🚨 ¡ÚLTIMOS DÍAS! ACTIVÁ TU BONUS DE BIENVENIDA ANTES DE QUE SEA TARDE! ⏳",
-                "🎁 ¡LA OPORTUNIDAD TE ESPERA! REGISTRATE GRATIS Y RECLAMÁ TU BONUS DE BIENVENIDA! 💥",
-                "🌟 ¡SUMATE HOY! 💎 APROVECHÁ TU BONUS DE BIENVENIDA Y VIVÍ ALGO DIFERENTE! 🚀"
+                "🔥¡DESBLOQUEÁ TU BONUS DE BIENVENIDA Y DISFRUTÁ DE GRANDES BENEFICIOS!🎉",
+                "🚨¡ÚLTIMOS DÍAS! ACTIVÁ TU BONUS DE BIENVENIDA ANTES DE QUE SEA TARDE!⏳",
+                "🎁¡LA OPORTUNIDAD TE ESPERA! REGISTRATE GRATIS Y RECLAMÁ TU BONUS DE BIENVENIDA!💥",
+                "🌟¡SUMATE HOY! 💎 APROVECHÁ TU BONUS DE BIENVENIDA Y VIVÍ ALGO DIFERENTE!🚀"
             ];
             
             const index = Math.floor(Math.random() * subtitles.length);
             document.querySelector(".subtitle").textContent = subtitles[index];
+            document.querySelector(".subtitle").style.opacity = 1;
             
             setTimeout(function() {
                 fbq('track', 'Lead');
-                window.location.href = "https://wa.me/5491171836655?text=HOLA,%20ME%20GUSTARÍA%20EMPEZAR%20A%20JUGAR,%20¿CÓMO%20EMPIEZO?";
-            }, 10000);
+                window.location.href = document.getElementById("redirectButton").href;
+            }, 5000);
         });
     </script>
 </body>
